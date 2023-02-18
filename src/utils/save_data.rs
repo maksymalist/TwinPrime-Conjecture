@@ -1,23 +1,37 @@
 use std::fs;
-use std::io::Result;
+use std::io::{Write, Result};
 
-pub enum DataType {
-    TwinPrimeGaps,
-    TwinPrimes,
-}
 
-pub fn save_data(data_type: DataType, data: Vec<i32>) -> Result<()> {
+pub fn save_data(max_steps: Vec<i32>, max_step_gap: Vec<i32>) -> Result<()> {
+    println!("saving data...");
 
-    match data_type {
-        DataType::TwinPrimeGaps => {
-            //
-        },
-        DataType::TwinPrimes => {
-            //
-        }
-        _ => {
-            println!("Error: data type not found");
-        }
+    
+    // write max_steps
+
+    let mut file = fs::OpenOptions::new()
+        .write(true)
+        .read(true)
+        .open("./data/max_steps.txt").unwrap();
+
+    
+    file.set_len(0).unwrap();
+
+    for step in max_steps {
+        file.write_all(format!("{}\n", step).as_bytes()).unwrap();
+    }
+
+    // write max_step_gap to file
+
+    let mut file = fs::OpenOptions::new()
+        .write(true)
+        .read(true)
+        .open("./data/max_step_gap.txt").unwrap();
+
+
+    file.set_len(0).unwrap();
+
+    for step in max_step_gap {
+        file.write_all(format!("{}\n", step).as_bytes()).unwrap();
     }
 
     Ok(())

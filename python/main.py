@@ -1,16 +1,29 @@
-import numpy as np
 import matplotlib.pyplot as plt
 
-def main():
-    fig, ax = plt.subplots()  # Create a figure containing a single axes.
 
-    y_data = [0, 4, 6, 6, 12, 6, 36, 78, 18, 42, 72, 90, 126, 132, 294, 6, 78, 444, 60, 18, 192]
-    x_data = [i for i in range(len(y_data))]
+x = []
+y = []
 
-    ax.plot(x_data, y_data)
+with open('../data/max_steps.txt', 'r') as f:
+    for line in f:
+        x.append(int(line))
+        
+with open('../data/max_step_gap.txt', 'r') as f:
+    for line in f:
+        y.append(int(line))
+        
 
-    plt.show()
+xmin, xmax = xlim = 0, max(x) + max(x) * 0.1
+ymin, ymax = ylim = 0, max(y) + max(y) * 0.1
 
+fig, ax = plt.subplots()
+ax.set(xlim=xlim, ylim=ylim, autoscale_on=False)
 
-if __name__ == '__main__':
-    main()
+    
+
+# plot the data into a bar chart
+
+ax.bar(x, y, width=0.01, align='center', color='blue', edgecolor='black')
+
+ax.set_aspect('auto')
+plt.show()
