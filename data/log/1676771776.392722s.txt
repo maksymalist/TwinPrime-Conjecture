@@ -1,0 +1,4 @@
+/// MAX STEPS ///:
+ "1\n2\n4\n10\n16\n28\n34\n70\n148\n", 
+///MAX STEP GAP ///:
+ "1\n1\n2\n6\n6\n12\n6\n36\n78\n"
